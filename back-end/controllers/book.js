@@ -81,7 +81,6 @@ module.exports = {
   searchBy: async (req, res) => {
     try {
       const { Title, Author } = req.query;
-
       const users = await book.findAll({
         where: {
           [Op.or]: {
@@ -173,4 +172,5 @@ module.exports = {
       res.status(400).send(err);
     }
   },
+
 };
