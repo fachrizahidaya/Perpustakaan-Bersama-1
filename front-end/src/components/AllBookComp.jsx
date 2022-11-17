@@ -29,15 +29,17 @@ import { BiSearchAlt, BiReset } from "react-icons/bi";
 import { BsFilterLeft } from "react-icons/bs";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import ReactPaginate from "react-paginate";
+import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
+
 
 export default function BookCard() {
-  const [limit, setLimit] = useState(10);
-  const [searchProduct, setSearchProduct] = useState("");
-  const [page, setPage] = useState(0);
-  const [totalPage, setTotalPage] = useState(0);
-  const [order, setOrder] = useState("Title");
-  const [order_direction, setOrder_direction] = useState("ASC");
+    const [limit, setLimit] = useState(5)
+    const [searchProduct, setSearchProduct] = useState('')
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState(0)
+    const [order, setOrder] = useState("Title")
+    const [order_direction, setOrder_direction] = useState("ASC")
 
   const dispatch = useDispatch();
   const data = useSelector((state) => state.bookSlice.value);
@@ -304,6 +306,28 @@ export default function BookCard() {
         previousLabel="< previous"
         renderOnZeroPageCount={null}
     /> */}
+        <Box display='flex' justifyContent='center' alignContent='center'>
+            <Button onClick={() => {
+                async function submit() {
+                    setPage(page ===1 ? 1 : page - 1)
+                } submit()
+                var pageNow = page - 1
+                pageNow = pageNow <= 0 ? 1 : pageNow
+                document.getElementById("pagingInput").value = parseInt(pageNow)
+                }}
+                size='sm' m='3px' borderColor="pink.400" borderRadius='9px' bg='white' borderWidth='2px' bgColor="inherit"
+                _hover={{ bg: "pink" }}>Prev</Button>
+            <Text alignSelf='center' mx='5px'> {page} of {totalPage}</Text>
+            <Button onClick={() => {
+                async function submit() {
+                    setPage(totalPage === page ? page : page + 1)
+                } submit()
+                var pageNow = page + 1
+                pageNow = pageNow > totalPage ? page : pageNow
+                document.getElementById("pagingInput").value = parseInt(pageNow);
+                }} size='sm' m='3px' borderColor="pink.400" borderRadius='9px' bg='white' borderWidth='2px' bgColor="inherit"
+            _hover={{ bg: 'pink'}}>Next</Button>
+        </Box>
     </>
   );
 }

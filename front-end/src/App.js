@@ -8,6 +8,9 @@ import { login } from "./redux/userSlice";
 import NavbarComp from "./components/NavbarComp";
 import "./App.css";
 import { AdminPage } from "./pages/AdminPage";
+import { VerificationPage } from "./pages/verificationPage"
+import DetailPage from "./pages/DetailPage";
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +31,13 @@ function App() {
           email: res.data.email,
         })
       );
+      dispatch(login({
+        NIM: res.data.NIM,
+        username: res.data.username,
+        email: res.data.email,
+        isVerified: res.data.isVerified
+      }));
+      
     } catch (err) {
       console.log(err);
     }
@@ -50,6 +60,8 @@ function App() {
           }
         />
       <Route path="/dashboard" element={<AdminPage />}></Route>
+          <Route path="/verification/:token" element={<VerificationPage />} />
+          <Route path="/detail/:id" element={<DetailPage />} />
       </Routes>
     </div>
   );
