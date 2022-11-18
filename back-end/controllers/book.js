@@ -149,6 +149,7 @@ module.exports = {
       res.status(400).send(err);
     }
   },
+
   sortBy: async (req, res) => {
     try {
       const { data, order } = req.query;

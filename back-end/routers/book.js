@@ -19,3 +19,6 @@ router.post("/uploaded/:id", multerUpload.single("file"), book.uploadFile)
 // router.get("/publisher", book.getByPublisher);
 
 module.exports = router;
+router.get("/sort", book.sortBy);
+
+module.exports = router;
