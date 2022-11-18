@@ -1,5 +1,8 @@
-const router = require("express").Router()
-const {admin} = require("../controllers/index")
-const {verifyToken, checkRole} = require("../middleware/auth")
+const router = require("express").Router();
+const { admin } = require("../controllers/index");
 
-module.exports = router
+router.post("/register", admin.register);
+router.post("/login", admin.login);
+router.get("/keepLogin", admin.login);
+
+module.exports = router;

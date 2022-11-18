@@ -2,14 +2,46 @@ const db = require("../models");
 const admin = db.Admin;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const transporter = require("../helpers/transporter");
 
 module.exports = {
+  register: async (req, res) => {
+    try {
+      const { username, password } = req.body;
+
+      // if (password != confirmPassword) throw "Wrong Password";
+
+      if (password.length < 8) throw "Minimum 8 characters";
+
+      const salt = await bcrypt.genSalt(10);
+
+      const hashPass = await bcrypt.hash(password, salt);
+
+      const data = await admin.create({
+        username,
+
+        password: hashPass,
+      });
+      // await profile.create({
+      //   UserNIM: NIM,
+      // });
+
+      const token = jwt.sign({ username: username }, "jcwd2204");
+
+      res.status(200).send({
+        massage: "Register Succes",
+        data,
+        token,
+      });
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  },
+
   login: async (req, res) => {
     try {
       const { username, password } = req.body;
 
-      const isUserExist = await user.findOne({
+      const isUserExist = await admin.findOne({
         where: {
           username: username ? username : "",
         },
@@ -40,29 +72,21 @@ module.exports = {
 
   keepLogin: async (req, res) => {
     try {
-        
-        const verify = jwt.verify(req.token, "jcwd2204");
-        // console.log(verify);
-        const result = await user.findOne({
-            where: {
-                username: verify.username,
-            },
-            raw: true,
-        });
-        
-        const isProflieExist = await db.Profile.findOne({
-            where: {
-                UserNIM: result.NIM
-            },
-            raw: true,
-        });
+      const verify = jwt.verify(req.token, "jcwd2204");
+      // console.log(verify);
+      const result = await admin.findOne({
+        where: {
+          username: verify.username,
+        },
+        raw: true,
+      });
 
-        result.profilePic = isProflieExist.profilePic
-        // console.log(result)
-        
-        res.status(200).send(result);
-        } catch (err) {
-        res.status(400).send(err);
+      result.profilePic = isProflieExist.profilePic;
+      // console.log(result)
+
+      res.status(200).send(result);
+    } catch (err) {
+      res.status(400).send(err);
     }
   },
 };

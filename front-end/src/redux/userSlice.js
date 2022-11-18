@@ -5,6 +5,7 @@ const initialState = {
     NIM: 0,
     username: "",
     email: "",
+    password: "",
   },
 };
 
@@ -16,11 +17,13 @@ export const userSlice = createSlice({
       state.value.NIM = action.payload.NIM;
       state.value.username = action.payload.username;
       state.value.email = action.payload.email;
+      state.value.password = action.payload.password;
     },
     logout: (state) => {
       state.value.NIM = 0;
       state.value.username = "";
       state.value.email = "";
+      state.value.password = "";
     },
   },
 });

@@ -5,8 +5,7 @@ import StatsComp from "../components/StatsComp";
 export const AdminPage = () => {
   return (
     <div>
-      <StatsComp />
-      <LoginAdmin/>
+      <LoginAdmin />
     </div>
   );
 };
