@@ -41,9 +41,10 @@ export const Register = () => {
             const result = await Axios.post(url, data);
 
             dispatch(login({
-                NIM: result.data.id,
+                NIM: result.data.NIM,
                 username: result.data.username,
                 email: result.data.email,
+                isVerified: result.data.isVerified,
             }));
 
             localStorage.setItem("token", result.data.token);
@@ -164,7 +165,7 @@ export const Register = () => {
                                             />
                                     </FormControl>
                                     <ModalFooter>
-                                        <Button type="submit" colorScheme='teal' mr={3}>
+                                        <Button type="submit" colorScheme="pink" mr={3}>
                                             Daftar
                                         </Button>
                                         <Button onClick={onClose}>Cancel</Button>
