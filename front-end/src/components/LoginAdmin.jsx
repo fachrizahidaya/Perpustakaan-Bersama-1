@@ -4,7 +4,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
   Stack,
   Link,
   Button,
@@ -13,26 +12,16 @@ import {
   useColorModeValue,
   useDisclosure,
   useColorMode,
-  Image,
   Collapse,
   Avatar,
   MenuList,
   MenuItem,
   Menu,
   MenuButton,
-  IconButton,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
   Icon,
+  Badge,
 } from "@chakra-ui/react";
-import {
-  MoonIcon,
-  SunIcon,
-  CloseIcon,
-  HamburgerIcon,
-  ChevronDownIcon,
-} from "@chakra-ui/icons";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Axios from "axios";
@@ -49,24 +38,17 @@ export default function LoginAdmin() {
   const dispatch = useDispatch();
   const inputUsername = useRef("");
   const inputPASS = useRef("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const onLogout = () => {
-    dispatch(logout());
-    localStorage.removeItem("token");
-  };
-
-  const onLogin = async (
-    // data
-    ) => {
-    // data.preventDefault()
+  const onLogin = async (data) => {
+    data.preventDefault();
     try {
       const user = {
         password: inputPASS.current.value,
         username: inputUsername.current.value,
       };
 
-      console.log(user)
+      console.log(user);
 
       const result = await Axios.post(url, user);
 
@@ -78,7 +60,7 @@ export default function LoginAdmin() {
       );
 
       localStorage.setItem("token", result.data.token);
-      navigate("/dashboard")
+      navigate("/dashboard");
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -106,11 +88,7 @@ export default function LoginAdmin() {
       >
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           <Stack align={"center"}>
-            <Heading fontSize={"4xl"}>Sign in to your account</Heading>
-            <Text fontSize={"lg"} color={"gray.600"}>
-              to enjoy all of our cool <Link color={"blue.400"}>features</Link>{" "}
-              ✌️
-            </Text>
+            <Heading fontSize={"4xl"}>Admin Page</Heading>
           </Stack>
           <Box
             rounded={"lg"}
@@ -133,8 +111,12 @@ export default function LoginAdmin() {
                   align={"start"}
                   justify={"space-between"}
                 >
-                  <Checkbox>Remember me</Checkbox>
-                  <Link color={"blue.400"}>Forgot password?</Link>
+                  <Link color={"blue.400"}>
+                    Forgot password?
+                    <Badge ml="1" fontSize="0.8em" colorScheme="green">
+                      Coming Soon
+                    </Badge>
+                  </Link>
                 </Stack>
                 <Button
                   bg={"blue.400"}
@@ -233,7 +215,6 @@ const MobileNav = () => {
       dispatch(
         login({
           username: result.data.isUserExist.username,
-          email: result.data.isUserExist.email,
         })
       );
 

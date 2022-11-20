@@ -1,9 +1,9 @@
 const bookRoutes = require("./book");
 const userRoutes = require("./user");
-const adminRoutes = require("./admin")
+const adminRoutes = require("./admin");
 
 module.exports = {
   bookRoutes,
   userRoutes,
-  adminRoutes
+  adminRoutes,
 };

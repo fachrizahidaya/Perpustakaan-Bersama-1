@@ -3,10 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import "./index.css";
+
 import { login } from "./redux/userSlice";
 import NavbarComp from "./components/NavbarComp";
-import "./App.css";
 import { AdminPage } from "./pages/AdminPage";
 import { VerificationPage } from "./pages/verificationPage";
 import DetailPage from "./pages/DetailPage";
@@ -16,9 +15,10 @@ function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const { NIM } = useSelector((state) => state.userSlice.value);
-  console.log(NIM)
+  console.log(NIM);
 
-  const keepLogin = async () => {
+  const keepLogin = async (data) => {
+    data.preventDefault();
     try {
       const res = await Axios.get(`http://localhost:2000/user/keepLogin`, {
         headers: {
@@ -46,7 +46,8 @@ function App() {
     }
   };
 
-  const keepLoginAdmin = async () => {
+  const keepLoginAdmin = async (data) => {
+    data.preventDefault();
     try {
       const res = await Axios.get(`http://localhost:2000/admin/keepLogin`, {
         headers: {
@@ -70,7 +71,7 @@ function App() {
   };
 
   useEffect(() => {
-    NIM === 0 ? keepLogin() : keepLoginAdmin();
+    "username" === "" ? keepLoginAdmin() : keepLogin();
   });
 
   return (

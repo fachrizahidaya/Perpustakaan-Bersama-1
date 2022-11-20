@@ -66,8 +66,6 @@ export default function NavbarComp() {
         NIM: inputNIM.current.value,
       };
 
-      // console.log(user)
-
       const result = await Axios.post(url, user);
 
       dispatch(
@@ -135,10 +133,12 @@ export default function NavbarComp() {
         align={"center"}
       >
         <Flex flex={{ base: 1 }} justify={{ md: "start" }} align="center">
-          <Image
-            src="https://openlibrary.org/static/images/openlibrary-logo-tighter.svg"
-            w="32"
-          />
+          <Button onClick="/" variant="ghost">
+            <Image
+              src="https://openlibrary.org/static/images/openlibrary-logo-tighter.svg"
+              w="32"
+            />
+          </Button>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -505,33 +505,33 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
-    label: "Inspiration",
+    label: "About Us",
     children: [
-      {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
-        href: "/",
-      },
-      {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "/",
-      },
+      // {
+      //   label: "Explore Design Work",
+      //   subLabel: "Trending Design to inspire you",
+      //   href: "/",
+      // },
+      // {
+      //   label: "New & Noteworthy",
+      //   subLabel: "Up-and-coming Designers",
+      //   href: "/",
+      // },
     ],
   },
   {
-    label: "Find Work",
+    label: "FAQ",
     children: [
-      {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "/",
-      },
-      {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "/",
-      },
+      // {
+      //   label: "Job Board",
+      //   subLabel: "Find your dream design job",
+      //   href: "/",
+      // },
+      // {
+      //   label: "Freelance Projects",
+      //   subLabel: "An exclusive list for contract work",
+      //   href: "/",
+      // },
     ],
   },
 ];

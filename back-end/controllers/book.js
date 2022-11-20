@@ -27,12 +27,14 @@ module.exports = {
     try {
       const users = await book.findAll({
         attributes: [
+          "id",
           "Title",
           "Author",
           "Genre",
           "Publisher",
           "Abstract",
           "Images",
+          "Stock",
         ],
       });
       res.status(200).send(users);
@@ -112,13 +114,15 @@ module.exports = {
     }
   },
 
-  delete: async (req, res) => {
+  remove: async (req, res) => {
     try {
       await book.destroy({
         where: {
           id: req.params.id,
         },
+        force: true,
       });
+      console.log(req.params.id);
       const users = await book.findAll();
       res.status(200).send(users);
     } catch (err) {
@@ -129,20 +133,23 @@ module.exports = {
 
   update: async (req, res) => {
     try {
+      const { Title, Author, Genre, Publisher, Abstract, Images, Stock } =
+        req.body;
       await book.update(
         {
-          Title: req.body.Title,
-          Author: req.body.Author,
-          Genre: req.body.Genre,
-          Publisher: req.body.Publisher,
-          Abstract: req.body.Abstract,
-          Images: req.body.Images,
+          Title,
+          Author,
+          Genre,
+          Publisher,
+          Abstract,
+          Images,
+          Stock,
         },
         {
-          where: { id: req.body.id },
+          where: { id: req.params.id },
         }
       );
-      const users = await book.findAll({ where: { id: req.body.id } });
+      const users = await book.findAll({ where: { id: req.params.id } });
       res.status(200).send(users);
     } catch (err) {
       console.log(err);
@@ -199,26 +206,26 @@ module.exports = {
       const { page, limit, search_query, order, order_direction } = req.query;
       const booklist_page = parseInt(page) || 0;
       const list_limit = parseInt(limit) || 5;
-      const search = search_query || '';
+      const search = search_query || "";
       const offset = list_limit * booklist_page;
-      const orderby = order || 'Title';
-      const direction = order_direction || 'ASC';
+      const orderby = order || "Title";
+      const direction = order_direction || "ASC";
       const totalRows = await book.count({
         where: {
           [Op.or]: [
             {
               Title: {
-                [Op.like]: '%' + search + '%',
+                [Op.like]: "%" + search + "%",
               },
             },
             {
               Author: {
-                [Op.like]: '%' + search + '%',
+                [Op.like]: "%" + search + "%",
               },
             },
             {
               Publisher: {
-                [Op.like]: '%' + search + '%',
+                [Op.like]: "%" + search + "%",
               },
             },
           ],
@@ -230,17 +237,17 @@ module.exports = {
           [Op.or]: [
             {
               Title: {
-                [Op.like]: '%' + search + '%',
+                [Op.like]: "%" + search + "%",
               },
             },
             {
               Author: {
-                [Op.like]: '%' + search + '%',
+                [Op.like]: "%" + search + "%",
               },
             },
             {
               Publisher: {
-                [Op.like]: '%' + search + '%',
+                [Op.like]: "%" + search + "%",
               },
             },
           ],
@@ -261,5 +268,12 @@ module.exports = {
       res.status(400).send(error);
     }
   },
-}
 
+  stock: async (req, res) => {
+    try {
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  },
+};
