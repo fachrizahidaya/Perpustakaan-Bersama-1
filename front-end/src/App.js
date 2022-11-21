@@ -25,19 +25,20 @@ function App() {
         },
       });
 
-      dispatch(
-        login({
-          NIM: res.data.NIM,
-          username: res.data.username,
-          email: res.data.email,
-        })
-      );
+      const result = await Axios.get(`http://localhost:2000/cart/${res.data.NIM}`);
+      dispatch(cartSync(result.data))
+
+      const loan = await Axios.get(`http://localhost:2000/loan/${res.data.NIM}`);
+      dispatch(loanSync(loan.data))
+
       dispatch(
         login({
           NIM: res.data.NIM,
           username: res.data.username,
           email: res.data.email,
           isVerified: res.data.isVerified,
+          cart: result.data.length,
+          loan: loan.data.length
         })
       );
     } catch (err) {
@@ -45,19 +46,13 @@ function App() {
     }
   };
 
-  const keepLoginAdmin = async (data) => {
-    data.preventDefault();
+  const keepLoginAdmin = async () => {
     try {
       const res = await Axios.get(`http://localhost:2000/admin/keepLogin`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      dispatch(
-        login({
-          username: res.data.username,
-        })
-      );
       dispatch(
         login({
           username: res.data.username,
@@ -70,14 +65,14 @@ function App() {
   };
 
   useEffect(() => {
-    "username" === "" ? keepLoginAdmin() : keepLogin();
+    NIM === 0 ? keepLogin() : keepLoginAdmin();
   });
 
   return (
     <div>
       <Routes>
         <Route
-          path="/"
+          path='/'
           element={
             <>
               <NavbarComp />
@@ -87,6 +82,8 @@ function App() {
         />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/dashboard" element={<AdminDashboard />} />
+        <Route path="/cart" element={<><NavbarComp/><CartPage /></>} />
+        <Route path="/loan" element={<><NavbarComp/><LoanPage /></>} />
         <Route path="/verification/:token" element={<VerificationPage />} />
         <Route path="/detail/:id" element={<DetailPage />} />
       </Routes>

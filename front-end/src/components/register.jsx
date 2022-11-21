@@ -80,8 +80,11 @@ export const Register = () => {
     } catch (err) {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: `${err.response.data}`,
+        title: "Error",
+        text: err.response.data.name
+          ? err.response.data.errors[0].message
+          : err.response.data,
+        timer: 2000,
         customClass: {
           container: "my-swal",
         },

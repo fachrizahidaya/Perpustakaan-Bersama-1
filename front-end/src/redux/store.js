@@ -4,6 +4,8 @@ import bookSlice from "./bookSlice";
 import adminSlice from "./adminSlice";
 import listSlice from "./listSlice";
 import nameSlice from "./nameSlice";
+import cartSlice from "./cartSlice";
+import loanSlice from "./loanSlice";
 
 export default configureStore({
   reducer: {
@@ -12,5 +14,7 @@ export default configureStore({
     adminSlice,
     listSlice,
     nameSlice,
+    cartSlice,
+    loanSlice,
   },
 });

@@ -50,8 +50,10 @@ export default function DetailPage() {
         py={{ base: 18, md: 24 }}
       >
         <Flex>
+
           <Image
             rounded={"md"}
+
             alt={data?.Title}
             src={data?.Images}
             fit={"cover"}

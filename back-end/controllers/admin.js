@@ -66,7 +66,6 @@ module.exports = {
   keepLogin: async (req, res) => {
     try {
       const verify = jwt.verify(req.token, "jcwd2204");
-
       const result = await admin.findOne({
         where: {
           username: verify.username,

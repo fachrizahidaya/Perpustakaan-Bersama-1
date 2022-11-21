@@ -21,26 +21,13 @@ import { RiWhatsappFill } from "react-icons/ri";
 export default function Footer() {
   return (
     <>
-      <Flex
-        flexWrap={"wrap"}
-        bg={useColorModeValue("gray.50", "gray.900")}
-        color={useColorModeValue("gray.700", "gray.200")}
-        minH={"200px"}
-        justifyContent={"center"}
-        padding={"30px"}
-        pt="20px"
-      >
-        {/* -------------------- Box 1 -------------------- */}
-        <Box flexWrap="wrap" width="310px" m="5px" mt="15px">
-          <Image
-            src="https://openlibrary.org/static/images/openlibrary-logo-tighter.svg"
-            width="180px"
-            height="40px"
-          />
-          <Box display="flex" mt="5px">
-            <Flex align="center" h="45px" w="45px" justifyContent="center">
-              <Icon boxSize="8" as={MdEmail} />
-            </Flex>
+      <Flex flexWrap={'wrap'} bg={useColorModeValue("white", "gray.800")}
+        color={useColorModeValue("gray.600", "white")} minH={'200px'} justifyContent={'center'} padding={'30px'} pt='20px'>
+
+        <Box flexWrap='wrap' width='310px' m='5px' mt='15px'>
+          <Image src="https://openlibrary.org/static/images/openlibrary-logo-tighter.svg" width='180px' height='40px' />
+          <Box display='flex' mt='5px'>
+            <Flex align='center' h='45px' w='45px' justifyContent='center'><Icon boxSize='8' as={MdEmail} /></Flex>
             <Box>
               <Box>
                 <Text fontSize="sm" fontWeight="bold">
@@ -84,43 +71,23 @@ export default function Footer() {
           </Box>
         </Box>
 
-        {/* -------------------- Tentang Healthymed -------------------- */}
-        <Box flexWrap="wrap" width="310px" m="5px" mt="15px">
-          <Text fontWeight="bold">Tentang Open Library</Text>
-          <Text mt="8px" fontSize="sm" fontWeight="semibold">
-            <Link>Kebijakan Privasi</Link>
-          </Text>
-          <Text mt="8px" fontSize="sm" fontWeight="semibold">
-            <Link>Syarat & Ketentuan</Link>
-          </Text>
-          <Text mt="8px" fontSize="sm" fontWeight="semibold">
-            <Link>Cara Belanja</Link>
-          </Text>
-          <Text mt="8px" fontSize="sm" fontWeight="semibold">
-            <Link>Tentang kami</Link>
-          </Text>
-          <Text mt="8px" fontSize="sm" fontWeight="semibold">
-            <Link>FAQ</Link>
-          </Text>
-          <Text mt="8px" fontSize="sm" fontWeight="semibold">
-            <Link>Karir</Link>
-          </Text>
+        <Box flexWrap='wrap' width='310px' m='5px' mt='15px'>
+          <Text fontWeight='bold' >Tentang Open Library</Text>
+          <Text mt='8px' fontSize='sm' fontWeight='semibold' ><Link>Kebijakan Privasi</Link></Text>
+          <Text mt='8px' fontSize='sm' fontWeight='semibold' ><Link>Syarat & Ketentuan</Link></Text>
+          <Text mt='8px' fontSize='sm' fontWeight='semibold' ><Link>Cara Belanja</Link></Text>
+          <Text mt='8px' fontSize='sm' fontWeight='semibold' ><Link>Tentang kami</Link></Text>
+          <Text mt='8px' fontSize='sm' fontWeight='semibold' ><Link>FAQ</Link></Text>
+          <Text mt='8px' fontSize='sm' fontWeight='semibold' ><Link>Karir</Link></Text>
         </Box>
 
-        {/* -------------------- Our Healthymed Sosmed -------------------- */}
-        <Box flexWrap="wrap" width="310px" m="5px" mt="15px">
-          <Text fontWeight="bold">Ikuti Kami</Text>
-          <Box display="flex" mt="5px">
-            <Link display="flex">
-              <Flex align="center" h="35px" w="40px" color="#3b5998">
-                <Icon boxSize="6" as={FaFacebookF} />
-              </Flex>
-              <Flex align="center">
-                <Box>
-                  <Text fontSize="md" fontWeight="bold" color="#3b5998">
-                    Facebook
-                  </Text>
-                </Box>
+        <Box flexWrap='wrap' width='310px' m='5px' mt='15px'>
+          <Text fontWeight='bold' >Ikuti Kami</Text>
+          <Box display='flex' mt='5px' >
+            <Link display='flex'>
+              <Flex align='center' h='35px' w='40px' color='#3b5998'><Icon boxSize='6' as={FaFacebookF} /></Flex>
+              <Flex align='center'>
+                <Box><Text fontSize='md' fontWeight='bold' color='#3b5998'>Facebook</Text></Box>
               </Flex>
             </Link>
           </Box>
@@ -159,12 +126,11 @@ export default function Footer() {
           </Box>
         </Box>
 
-        {/* -------------------- Healthymed Payment Method -------------------- */}
-        <Box flexWrap="wrap" width="310px" m="5px" mt="15px">
-          <Text fontWeight="bold">Metode Pembayaran</Text>
-          <Box mt="10px" display="flex" flexWrap="wrap">
-            <Box mr="10px" pt="10px">
-              <Image src={bank_bca} width="70px" height="23px" />
+        <Box flexWrap='wrap' width='310px' m='5px' mt='15px'>
+          <Text fontWeight='bold' >Metode Pembayaran</Text>
+          <Box mt='10px' display='flex' flexWrap='wrap'>
+            <Box mr='10px' pt='10px'>
+              <Image src={bank_bca} width='70px' height='23px' />
             </Box>
             <Box mr="10px">
               <Image src={bank_mandiri} width="100px" height="30px" />

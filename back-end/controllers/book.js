@@ -1,14 +1,16 @@
-const { Op } = require("sequelize");
-const { sequelize } = require("../models");
-const db = require("../models");
+const { Op } = require('sequelize');
+const { sequelize } = require('../models');
+const db = require('../models');
 const book = db.Book;
+const user = db.User;
+const cart = db.Cart;
 
 module.exports = {
   create: async (req, res) => {
     try {
       const { Title, Author, Genre, Publisher, Abstract, Images } = req.body;
       if (!Title && !Author && !Genre && !Publisher && !Abstract && !Images)
-        throw "required field";
+        throw 'required field';
       const data = await book.create({
         Title,
         Author,
@@ -17,7 +19,7 @@ module.exports = {
         Abstract,
         Images,
       });
-      res.status(200).send("Successfully Added");
+      res.status(200).send('Successfully Added');
     } catch (err) {
       console.log(err);
       res.status(400).send(err);
@@ -64,12 +66,18 @@ module.exports = {
       const users = await book.findAll({
         where: {
           [Op.or]: {
-            Title: Title ? Title : "",
-            Author: Author ? Author : "",
-            Genre: Genre ? Genre : "",
-            Publisher: Publisher ? Publisher : "",
+            Title: Title ? Title : '',
+            Author: Author ? Author : '',
+            Genre: Genre ? Genre : '',
+            Publisher: Publisher ? Publisher : '',
           },
         },
+        include: [
+          {
+            model: cart,
+            attributes: ["id", "UserNIM"],
+          }
+        ],
         raw: true,
       });
       res.status(200).send(users);
@@ -105,7 +113,7 @@ module.exports = {
   totalBooks: async (req, res) => {
     try {
       const users = await book.findAll({
-        attributes: [[sequelize.fn("count", sequelize.col(`id`)), "total"]],
+        attributes: [[sequelize.fn('count', sequelize.col(`id`)), 'total']],
       });
       res.status(200).send(users);
     } catch (err) {
@@ -173,7 +181,7 @@ module.exports = {
   uploadFile: async (req, res) => {
     try {
       let fileUploaded = req.file;
-      console.log("controller", fileUploaded);
+      console.log('controller', fileUploaded);
       await book.update(
         {
           Images: fileUploaded.filename,
@@ -233,6 +241,12 @@ module.exports = {
       });
       const totalPage = Math.ceil(totalRows / limit);
       const result = await book.findAll({
+        include: [
+          {
+            model: cart,
+            attributes: ["id", "UserNIM"],
+          }
+        ],
         where: {
           [Op.or]: [
             {
@@ -255,9 +269,15 @@ module.exports = {
         offset: offset,
         limit: list_limit,
         order: [[orderby, direction]],
+        include: [
+          {
+            model: cart,
+            attributes: ["id", "UserNIM"],
+          }
+        ],
       });
 
-      res.status(200).json({
+      res.status(200).send({
         result: result,
         page: booklist_page,
         limit: list_limit,
