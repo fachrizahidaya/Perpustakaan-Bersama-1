@@ -9,15 +9,19 @@ import { AdminPage } from "./pages/AdminPage";
 import { VerificationPage } from "./pages/verificationPage";
 import DetailPage from "./pages/DetailPage";
 import { AdminDashboard } from "./pages/AdminDashboard";
+import { cartSync } from "./redux/cartSlice";
+import { loanSync } from "./redux/loanSlice";
+import CartPage from "./pages/CartPage";
+import LoanPage from "./pages/LoanPage";
+import { loginAdmin } from "./redux/adminSlice";
 
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
+  const tokenAdmin = localStorage.getItem("tokenAdmin");
   const { NIM } = useSelector((state) => state.userSlice.value);
-  console.log(NIM);
 
-  const keepLogin = async (data) => {
-    data.preventDefault();
+  const keepLogin = async () => {
     try {
       const res = await Axios.get(`http://localhost:2000/user/keepLogin`, {
         headers: {
@@ -25,11 +29,15 @@ function App() {
         },
       });
 
-      const result = await Axios.get(`http://localhost:2000/cart/${res.data.NIM}`);
-      dispatch(cartSync(result.data))
+      const result = await Axios.get(
+        `http://localhost:2000/cart/${res.data.NIM}`
+      );
+      dispatch(cartSync(result.data));
 
-      const loan = await Axios.get(`http://localhost:2000/loan/${res.data.NIM}`);
-      dispatch(loanSync(loan.data))
+      const loan = await Axios.get(
+        `http://localhost:2000/loan/${res.data.NIM}`
+      );
+      dispatch(loanSync(loan.data));
 
       dispatch(
         login({
@@ -38,7 +46,7 @@ function App() {
           email: res.data.email,
           isVerified: res.data.isVerified,
           cart: result.data.length,
-          loan: loan.data.length
+          loan: loan.data.length,
         })
       );
     } catch (err) {
@@ -50,13 +58,12 @@ function App() {
     try {
       const res = await Axios.get(`http://localhost:2000/admin/keepLogin`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${tokenAdmin}`,
         },
       });
       dispatch(
-        login({
+        loginAdmin({
           username: res.data.username,
-          isVerified: res.data.isVerified,
         })
       );
     } catch (err) {
@@ -65,14 +72,18 @@ function App() {
   };
 
   useEffect(() => {
-    NIM === 0 ? keepLogin() : keepLoginAdmin();
+    tokenAdmin
+      ? keepLoginAdmin()
+      : token
+      ? keepLogin()
+      : console.log("Open Library");
   });
 
   return (
     <div>
       <Routes>
         <Route
-          path='/'
+          path="/"
           element={
             <>
               <NavbarComp />
@@ -82,8 +93,24 @@ function App() {
         />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/dashboard" element={<AdminDashboard />} />
-        <Route path="/cart" element={<><NavbarComp/><CartPage /></>} />
-        <Route path="/loan" element={<><NavbarComp/><LoanPage /></>} />
+        <Route
+          path="/cart"
+          element={
+            <>
+              <NavbarComp />
+              <CartPage />
+            </>
+          }
+        />
+        <Route
+          path="/loan"
+          element={
+            <>
+              <NavbarComp />
+              <LoanPage />
+            </>
+          }
+        />
         <Route path="/verification/:token" element={<VerificationPage />} />
         <Route path="/detail/:id" element={<DetailPage />} />
       </Routes>

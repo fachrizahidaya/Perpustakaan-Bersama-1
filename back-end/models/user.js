@@ -14,44 +14,43 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.Loan);
         }
     }
-  }
-  User.init(
-    {
-      NIM: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        unique: "NIM",
-        primaryKey: true,
-      },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: "username",
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: "email",
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [8],
+    User.init(
+        {
+            NIM: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                unique: "NIM",
+                primaryKey: true
+            },
+            username: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: "username",
+            },
+            email: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: "email",
+            },
+            password: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                validate: {
+                len: [8],
+                },
+            },
+            code_otp: {
+                type: DataTypes.STRING
+            },
+            isVerified: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: false,
+            },
         },
-      },
-      code_otp: {
-        type: DataTypes.STRING,
-      },
-      isVerified: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-      },
-    },
-    {
-      sequelize,
-      modelName: "User",
-    }
-  );
-  return User;
+        {
+        sequelize,
+        modelName: "User",
+        }
+    );
+    return User;
 };
