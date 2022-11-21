@@ -2,6 +2,7 @@ const { Op } = require("sequelize");
 const { sequelize } = require("../models");
 const db = require("../models");
 const book = db.Book;
+const cart = db.Cart
 
 module.exports = {
   create: async (req, res) => {
@@ -34,7 +35,7 @@ module.exports = {
           "Publisher",
           "Abstract",
           "Images",
-          "Stock",
+          // "Stock",
         ],
       });
       res.status(200).send(users);
@@ -206,26 +207,26 @@ module.exports = {
       const { page, limit, search_query, order, order_direction } = req.query;
       const booklist_page = parseInt(page) || 0;
       const list_limit = parseInt(limit) || 5;
-      const search = search_query || "";
+      const search = search_query || '';
       const offset = list_limit * booklist_page;
-      const orderby = order || "Title";
-      const direction = order_direction || "ASC";
+      const orderby = order || 'Title';
+      const direction = order_direction || 'ASC';
       const totalRows = await book.count({
         where: {
           [Op.or]: [
             {
               Title: {
-                [Op.like]: "%" + search + "%",
+                [Op.like]: '%' + search + '%',
               },
             },
             {
               Author: {
-                [Op.like]: "%" + search + "%",
+                [Op.like]: '%' + search + '%',
               },
             },
             {
               Publisher: {
-                [Op.like]: "%" + search + "%",
+                [Op.like]: '%' + search + '%',
               },
             },
           ],
@@ -233,21 +234,27 @@ module.exports = {
       });
       const totalPage = Math.ceil(totalRows / limit);
       const result = await book.findAll({
+        include: [
+          {
+            model: cart,
+            attributes: ["id", "UserNIM"],
+          }
+        ],
         where: {
           [Op.or]: [
             {
               Title: {
-                [Op.like]: "%" + search + "%",
+                [Op.like]: '%' + search + '%',
               },
             },
             {
               Author: {
-                [Op.like]: "%" + search + "%",
+                [Op.like]: '%' + search + '%',
               },
             },
             {
               Publisher: {
-                [Op.like]: "%" + search + "%",
+                [Op.like]: '%' + search + '%',
               },
             },
           ],
@@ -255,9 +262,15 @@ module.exports = {
         offset: offset,
         limit: list_limit,
         order: [[orderby, direction]],
+        include: [
+          {
+            model: cart,
+            attributes: ["id", "UserNIM"],
+          }
+        ],
       });
 
-      res.status(200).json({
+      res.status(200).send({
         result: result,
         page: booklist_page,
         limit: list_limit,

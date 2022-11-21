@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Book.hasMany(models.Cart);
+      Book.hasMany(models.Loan_Detail);
     }
   }
   Book.init(
@@ -37,10 +39,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      Stock: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
+      // Stock: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: true,
+      // },
     },
     {
       sequelize,

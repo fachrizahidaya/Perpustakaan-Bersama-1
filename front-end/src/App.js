@@ -9,7 +9,7 @@ import { AdminPage } from "./pages/AdminPage";
 import { VerificationPage } from "./pages/verificationPage";
 import DetailPage from "./pages/DetailPage";
 import { AdminDashboard } from "./pages/AdminDashboard";
-import { cartSync } from "./redux/cartSlice";
+import cartSync from "./redux/cartSlice";
 import { loanSync } from "./redux/loanSlice";
 import CartPage from "./pages/CartPage";
 import LoanPage from "./pages/LoanPage";

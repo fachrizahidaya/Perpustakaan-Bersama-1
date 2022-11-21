@@ -185,7 +185,7 @@ export const AdminDashboard = () => {
                   <Th>Author</Th>
                   <Th>Genre</Th>
                   <Th>Publisher</Th>
-                  <Th>Stock</Th>
+                  {/* <Th>Stock</Th> */}
                   <Th>Images</Th>
                   <Th>Actions</Th>
                 </Tr>
@@ -198,7 +198,7 @@ export const AdminDashboard = () => {
                       <Td>{item.Author}</Td>
                       <Td>{item.Genre}</Td>
                       <Td>{item.Publisher}</Td>
-                      <Td>{item.Stock}</Td>
+                      {/* <Td>{item.Stock}</Td> */}
                       <Td>
                         <Image w="20px" h="20px" src={item.Images}></Image>
                       </Td>

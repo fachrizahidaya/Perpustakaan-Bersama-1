@@ -123,6 +123,7 @@ export default function BookCard() {
       const res = await Axios.get(`http://localhost:2000/cart/${NIM}`);
       dispatch(cartSync(res.data));
       dispatch(addCart());
+      getData()
 
       Swal.fire({
         icon: "success",
@@ -332,7 +333,7 @@ export default function BookCard() {
                   </Box>
                 </Box>
                 <Box pb="12px" px="10px" h="40px">
-                  {item.Carts?.find((item2) => item2["UserNIM"] === NIM) ? (
+                  {item.Carts.find((item2) => item2["UserNIM"] === NIM) ? (
                     <Button
                       disabled
                       w="full"
