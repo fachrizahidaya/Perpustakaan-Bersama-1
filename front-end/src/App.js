@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-
 import { login } from "./redux/userSlice";
 import NavbarComp from "./components/NavbarComp";
 import { AdminPage } from "./pages/AdminPage";
