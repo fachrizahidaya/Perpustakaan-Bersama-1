@@ -29,10 +29,10 @@ function App() {
         },
       });
 
-      const result = await Axios.get(
+      const cart = await Axios.get(
         `http://localhost:2000/cart/${res.data.NIM}`
       );
-      dispatch(cartSync(result.data));
+      dispatch(cartSync(cart.data));
 
       const loan = await Axios.get(
         `http://localhost:2000/loan/${res.data.NIM}`
@@ -45,7 +45,7 @@ function App() {
           username: res.data.username,
           email: res.data.email,
           isVerified: res.data.isVerified,
-          cart: result.data.length,
+          cart: cart.data.length,
           loan: loan.data.length,
         })
       );
