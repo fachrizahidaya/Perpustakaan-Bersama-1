@@ -33,14 +33,9 @@ import {
   Heading,
 } from "@chakra-ui/react";
 
-import StatsComp from "../components/StatsComp";
 import { syncName } from "../redux/nameSlice";
-import { logoutAdmin } from "../redux/adminSlice";
 import { EditIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import BookCard from "../components/AllBookComp";
-import CreateComp from "../components/CreateComp";
-import { DeleteIcon } from "@chakra-ui/icons";
 
 export const UsersTable = () => {
   const dispatch = useDispatch();
@@ -64,7 +59,6 @@ export const UsersTable = () => {
     <div>
       <Stack mt="20px" mb="20px" ml="20px" mr="20px">
         <Box m="20px">
-          
           <TableContainer>
             <Table variant="striped" colorScheme="blue">
               <Thead>

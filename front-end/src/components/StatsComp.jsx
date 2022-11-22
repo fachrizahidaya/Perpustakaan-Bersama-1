@@ -21,10 +21,6 @@ import { BsPerson } from "react-icons/bs";
 import { FiServer } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
-import { syncName } from "../redux/nameSlice";
-import { syncData } from "../redux/listSlice";
-import { loanSync } from "../redux/loanSlice";
-import Axios from "axios";
 import { useEffect } from "react";
 import { UsersTable } from "./UsersTable";
 import { BooksTable } from "./BooksTable";
@@ -67,36 +63,8 @@ export default function StatsComp() {
   // const dispatch = useDispatch();
   const data = useSelector((state) => state.nameSlice.value);
   const data1 = useSelector((state) => state.listSlice.value);
-  const data2 = useSelector((state) => state.loanSlice.value)
+  const data2 = useSelector((state) => state.loanSlice.value);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  // const getData = async () => {
-  //   try {
-  //     const res = await Axios.get(`http://localhost:2000/user/allUser`);
-  //     console.log(res.data);
-  //     dispatch(syncName(res.data));
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getData();
-  // }, []);
-
-  // const getBook = async () => {
-  //   try {
-  //     const res = await Axios.get(`http://localhost:2000/book/list`);
-  //     console.log(res.data);
-  //     dispatch(syncData(res.data));
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getBook();
-  // }, []);
 
   return (
     <Box maxW="7xl" mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
@@ -109,11 +77,11 @@ export default function StatsComp() {
 
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
         {/* <Button onClick={onOpen} variant="ghost"> */}
-          <StatsCard
-            title={"Users"}
-            stat={data.length}
-            icon={<BsPerson size={"3em"} />}
-          />
+        <StatsCard
+          title={"Users"}
+          stat={data.length}
+          icon={<BsPerson size={"3em"} />}
+        />
         {/* </Button> */}
         {/* <Modal
           isCentered
@@ -136,11 +104,11 @@ export default function StatsComp() {
         </Modal> */}
 
         {/* <Button onClick={onOpen} variant="ghost"> */}
-          <StatsCard
-            title={"Books"}
-            stat={data1.length}
-            icon={<FiServer size={"3em"} />}
-          ></StatsCard>
+        <StatsCard
+          title={"Books"}
+          stat={data1.length}
+          icon={<FiServer size={"3em"} />}
+        ></StatsCard>
         {/* </Button> */}
         {/* <Modal
           isCentered
