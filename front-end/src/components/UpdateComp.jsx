@@ -22,14 +22,14 @@ import { useRef } from "react";
 // import { syncData } from "../redux/listSlice";
 
 export default function UpdateComp({ data }) {
-  //   console.log(data);
+  console.log(data);
   const inputTitle = useRef("");
   const inputAuthor = useRef("");
   const inputPublisher = useRef("");
   const inputGenre = useRef("");
   const inputAbstract = useRef("");
 
-  const onUpdate = async (data, id) => {
+  const onUpdate = async (id) => {
     try {
       const updateBook = {
         Title: inputTitle.current.value,
@@ -83,7 +83,6 @@ export default function UpdateComp({ data }) {
               type="text"
               ref={inputTitle}
               defaultValue={data.Title}
-              src={data.Title}
             />
           </FormControl>
         </Flex>
@@ -94,7 +93,6 @@ export default function UpdateComp({ data }) {
             type="author"
             ref={inputAuthor}
             defaultValue={data.Author}
-            src={data.Author}
           />
         </FormControl>
         <FormControl id="publisher" isRequired>
@@ -104,7 +102,6 @@ export default function UpdateComp({ data }) {
             type="publisher"
             ref={inputPublisher}
             defaultValue={data.Publisher}
-            src={data.Publisher}
           />
         </FormControl>
         <FormControl id="genre" isRequired>
@@ -114,7 +111,6 @@ export default function UpdateComp({ data }) {
             type="genre"
             ref={inputGenre}
             defaultValue={data.Genre}
-            src={data.Genre}
           />
         </FormControl>
         <FormControl id="abstract" isRequired>
@@ -123,7 +119,6 @@ export default function UpdateComp({ data }) {
             _placeholder={{ color: "gray.500" }}
             ref={inputAbstract}
             defaultValue={data.Abstract}
-            src={data.Abstract}
           />
         </FormControl>
         {/* <FormControl id="picture">

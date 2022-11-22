@@ -105,11 +105,11 @@ export const AdminDashboard = () => {
     getUser();
   }, []);
 
-  const getLoan = async (NIM) => {
+  const getLoan = async () => {
     try {
-      const res = await Axios.get(`http://localhost:2000/loan/${NIM}`);
-      console.log(res);
-      dispatch(loanSync(res));
+      const res = await Axios.get(`http://localhost:2000/loan/list`);
+      console.log(res.data);
+      dispatch(loanSync(res.data));
     } catch (err) {
       console.log(err);
     }
@@ -293,7 +293,7 @@ export const AdminDashboard = () => {
                   <Th>NIM</Th>
                 </Tr>
               </Thead>
-              {data2.map((item) => {
+              {data2?.map((item) => {
                 return (
                   <Tbody>
                     <Tr>
