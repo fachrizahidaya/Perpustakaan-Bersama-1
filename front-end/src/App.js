@@ -13,7 +13,7 @@ import { cartSync } from "./redux/cartSlice";
 import { loanSync } from "./redux/loanSlice";
 import CartPage from "./pages/CartPage";
 import LoanPage from "./pages/LoanPage";
-import { loginAdmin } from "./redux/adminSlice";
+import { loginAdmin } from "./redux/admin/adminSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -72,11 +72,10 @@ function App() {
   };
 
   useEffect(() => {
-    tokenAdmin
-      ? keepLoginAdmin()
-      : token
-      ? keepLogin()
-      : console.log("Open Library");
+    tokenAdmin ? keepLoginAdmin() : console.log("Open Library");
+  });
+  useEffect(() => {
+    token ? keepLogin() : console.log("Open Library");
   });
 
   return (

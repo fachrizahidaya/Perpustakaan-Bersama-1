@@ -63,7 +63,7 @@ export default function StatsComp() {
   // const dispatch = useDispatch();
   const data = useSelector((state) => state.nameSlice.value);
   const data1 = useSelector((state) => state.listSlice.value);
-  const data2 = useSelector((state) => state.loanSlice.value);
+  const data2 = useSelector((state) => state.loanAdminSlice.value);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (

@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import React from "react";
 import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { syncData } from "../redux/listSlice";
+import { syncData } from "../redux/admin/listSlice";
 import {
   Image,
   Button,
@@ -43,7 +43,7 @@ import {
 
 import StatsComp from "../components/StatsComp";
 import { syncName } from "../redux/nameSlice";
-import { logoutAdmin } from "../redux/adminSlice";
+import { logoutAdmin } from "../redux/admin/adminSlice";
 import { EditIcon, MoonIcon, SunIcon, AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import BookCard from "../components/AllBookComp";
@@ -51,14 +51,15 @@ import CreateComp from "../components/CreateComp";
 import { DeleteIcon } from "@chakra-ui/icons";
 import UpdateComp from "../components/UpdateComp";
 import { useState } from "react";
-import { loanSync } from "../redux/loanSlice";
+import { loanSync } from "../redux/admin/loanAdminSlice";
 
 export const AdminDashboard = () => {
   const dispatch = useDispatch();
   const [edit, setEdit] = useState({});
+  
   const data = useSelector((state) => state.listSlice.value);
   const data1 = useSelector((state) => state.nameSlice.value);
-  const data2 = useSelector((state) => state.loanSlice.value);
+  const data2 = useSelector((state) => state.loanAdminSlice.value);
   const { username } = useSelector((state) => state.adminSlice.value);
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -128,6 +129,8 @@ export const AdminDashboard = () => {
       console.log(err);
     }
   };
+
+   
 
   return (
     <div>
@@ -219,8 +222,9 @@ export const AdminDashboard = () => {
                             colorScheme="teal"
                             display="flex"
                             onClick={() => setEdit(item)}
+                            
                           >
-                            <EditIcon />
+                            <EditIcon onClick={"#href"} />
                           </Button>
                         </Flex>
                       </Td>
@@ -268,7 +272,7 @@ export const AdminDashboard = () => {
                   <Th>NIM</Th>
                 </Tr>
               </Thead>
-              {data2?.map((item) => {
+              {data2.map((item) => {
                 return (
                   <Tbody>
                     <Tr>

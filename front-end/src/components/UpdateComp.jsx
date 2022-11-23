@@ -37,14 +37,14 @@ export default function UpdateComp({ data }) {
         Genre: inputGenre.current.value,
         Abstract: inputAbstract.current.value,
       };
-      console.log(updateBook);
+      // console.log(updateBook);
 
       const res = await Axios.patch(
         `http://localhost:2000/book/update/${id}`,
         updateBook
       );
 
-      console.log(res);
+      // console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -65,7 +65,7 @@ export default function UpdateComp({ data }) {
         boxShadow={"lg"}
         p={6}
         my={12}
-        id="#edit"
+        
       >
         <Heading
           lineHeight={1.1}
@@ -74,7 +74,7 @@ export default function UpdateComp({ data }) {
         >
           Edit Book
         </Heading>
-        <Flex>
+        <Flex id="formEdit">
           <FormControl id="title" isRequired>
             <FormLabel>Title</FormLabel>
             <Input
