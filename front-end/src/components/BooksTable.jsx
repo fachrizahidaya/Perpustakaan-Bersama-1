@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import React from "react";
 import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { syncData } from "../redux/admin/listSlice";
+import { syncData } from "../redux/listSlice";
 import {
   Image,
   Button,
@@ -32,9 +32,7 @@ import {
   useDisclosure,
   Heading,
 } from "@chakra-ui/react";
-
 import { EditIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
-
 import { DeleteIcon } from "@chakra-ui/icons";
 import UpdateComp from "./UpdateComp";
 
@@ -52,7 +50,7 @@ export const BooksTable = () => {
   const getData = async () => {
     try {
       const res = await Axios.get(`http://localhost:2000/book/list`);
-      console.log(res.data)
+      console.log(res.data);
       dispatch(syncData(res.data));
     } catch (err) {
       console.log(err);
@@ -82,13 +80,13 @@ export const BooksTable = () => {
         Genre: inputGenre.current.value,
         Abstract: inputAbstract.current.value,
       };
-
+      //   let inputFromUser = prompt("Edit Here");
       getData();
-
       const res = await Axios.patch(
         `http://localhost:2000/book/update/${id}`,
         updateBook
       );
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -136,6 +134,10 @@ export const BooksTable = () => {
                             colorScheme="teal"
                             display="flex"
                             justifyContent=""
+                            // onClick=
+                            // {
+                            //     () => onUpdate(item.id)
+                            // }
                             href={<UpdateComp />}
                           >
                             <EditIcon />

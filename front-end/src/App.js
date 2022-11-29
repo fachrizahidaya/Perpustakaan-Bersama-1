@@ -72,10 +72,11 @@ function App() {
   };
 
   useEffect(() => {
-    tokenAdmin ? keepLoginAdmin() : console.log("Open Library");
-  });
-  useEffect(() => {
-    token ? keepLogin() : console.log("Open Library");
+    tokenAdmin
+      ? keepLoginAdmin()
+      : token
+      ? keepLogin()
+      : console.log("Open Library");
   });
 
   return (

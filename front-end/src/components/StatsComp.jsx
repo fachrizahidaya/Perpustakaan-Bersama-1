@@ -8,12 +8,22 @@ import {
   StatNumber,
   useColorModeValue,
   useDisclosure,
+  Modal,
+  Button,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
 } from "@chakra-ui/react";
 import { BsPerson } from "react-icons/bs";
 import { FiServer } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useEffect } from "react";
+import { UsersTable } from "./UsersTable";
+import { BooksTable } from "./BooksTable";
 import { CheckIcon } from "@chakra-ui/icons";
 
 function StatsCard(props) {
@@ -54,6 +64,7 @@ export default function StatsComp() {
   const data = useSelector((state) => state.nameSlice.value);
   const data1 = useSelector((state) => state.listSlice.value);
   const data2 = useSelector((state) => state.loanAdminSlice.value);
+  const data2 = useSelector((state) => state.loanSlice.value);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (

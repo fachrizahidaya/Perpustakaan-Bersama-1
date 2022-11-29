@@ -57,7 +57,7 @@ module.exports = {
         no_invoice,
       });
     } catch (err) {
-      console.log(err);
+      res.status(400).send(err);
     }
   },
   getLoanActive: async (req, res) => {

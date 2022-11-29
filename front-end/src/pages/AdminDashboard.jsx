@@ -44,6 +44,7 @@ import {
 import StatsComp from "../components/StatsComp";
 import { syncName } from "../redux/nameSlice";
 import { logoutAdmin } from "../redux/admin/adminSlice";
+import { logoutAdmin } from "../redux/adminSlice";
 import { EditIcon, MoonIcon, SunIcon, AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import BookCard from "../components/AllBookComp";
@@ -52,18 +53,17 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import UpdateComp from "../components/UpdateComp";
 import { useState } from "react";
 import { loanSync } from "../redux/admin/loanAdminSlice";
+import { loanSync } from "../redux/loanSlice";
 
 export const AdminDashboard = () => {
   const dispatch = useDispatch();
   const [edit, setEdit] = useState({});
-
   const data = useSelector((state) => state.listSlice.value);
   const data1 = useSelector((state) => state.nameSlice.value);
   const data2 = useSelector((state) => state.loanAdminSlice.value);
   const { username } = useSelector((state) => state.adminSlice.value);
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const navigate = useNavigate();
 
   const onLogout = () => {

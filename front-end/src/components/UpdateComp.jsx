@@ -17,7 +17,6 @@ import {
   ModalFooter,
   Box,
 } from "@chakra-ui/react";
-
 import Axios from "axios";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -29,13 +28,15 @@ export default function UpdateComp({ data }) {
   const [image, setImage] = useState("");
   const [profile, setProfile] = useState("Public");
   const navigate = useNavigate();
+
+export default function UpdateComp({ data }) {
+  console.log(data);
   const inputTitle = useRef("");
   const inputAuthor = useRef("");
   const inputPublisher = useRef("");
   const inputGenre = useRef("");
   const inputAbstract = useRef("");
   const inputImages = useRef("");
-
   const onUpdate = async () => {
     try {
       const updateBook = {
@@ -47,7 +48,6 @@ export default function UpdateComp({ data }) {
         Images: inputImages.current.value,
       };
       // console.log(updateBook);
-
       const res = await Axios.patch(
         `http://localhost:2000/book/update/${id}`,
         updateBook
@@ -102,6 +102,7 @@ export default function UpdateComp({ data }) {
         boxShadow={"lg"}
         p={6}
         my={12}
+        id="#edit"
       >
         <Heading
           lineHeight={1.1}
@@ -111,6 +112,7 @@ export default function UpdateComp({ data }) {
           Edit Book
         </Heading>
         <Flex id="formEdit">
+        <Flex>
           <FormControl id="title" isRequired>
             <FormLabel>Title</FormLabel>
             <Input
@@ -176,7 +178,6 @@ export default function UpdateComp({ data }) {
           ></Input>
           <Button onClick={handleUpload}>Upload</Button>
         </FormControl>
-
         <Stack spacing={6} direction={["column", "row"]}>
           {/* <Button
               bg={"red.400"}
