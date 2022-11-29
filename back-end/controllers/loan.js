@@ -57,7 +57,6 @@ module.exports = {
         no_invoice,
       });
     } catch (err) {
-      res.status(400).send(err);
       console.log(err);
     }
   },
@@ -84,7 +83,6 @@ module.exports = {
       });
       res.status(200).send(loans);
     } catch (err) {
-      console.log(err);
       res.status(400).send(err);
     }
   },
@@ -103,7 +101,6 @@ module.exports = {
         massage: "Transaksi Succes",
       });
     } catch (err) {
-      console.log(err);
       res.status(400).send(err);
     }
   },
@@ -121,7 +118,6 @@ module.exports = {
       });
       res.status(200).send(users);
     } catch (err) {
-      console.log(err);
       res.status(400).send(err);
     }
   },
@@ -141,7 +137,6 @@ module.exports = {
         massage: "Transaksi Succes",
       });
     } catch (err) {
-      console.log(err);
       res.status(400).send(err);
     }
   },

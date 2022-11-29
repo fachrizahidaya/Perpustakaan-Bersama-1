@@ -8,22 +8,12 @@ import {
   StatNumber,
   useColorModeValue,
   useDisclosure,
-  Modal,
-  Button,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
 } from "@chakra-ui/react";
 import { BsPerson } from "react-icons/bs";
 import { FiServer } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { UsersTable } from "./UsersTable";
-import { BooksTable } from "./BooksTable";
+
 import { CheckIcon } from "@chakra-ui/icons";
 
 function StatsCard(props) {

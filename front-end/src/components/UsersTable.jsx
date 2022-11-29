@@ -2,18 +2,11 @@ import { useEffect, useRef } from "react";
 import React from "react";
 import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { syncData } from "../redux/admin/listSlice";
+
 import {
-  Image,
-  Button,
   Box,
-  Text,
-  Icon,
-  Flex,
-  Center,
   TableContainer,
   Table,
-  TableCaption,
   Thead,
   Tr,
   Th,
@@ -21,16 +14,7 @@ import {
   Td,
   Tfoot,
   Stack,
-  Menu,
-  MenuButton,
-  Avatar,
-  MenuList,
-  MenuDivider,
-  MenuItem,
-  useColorModeValue,
   useColorMode,
-  useDisclosure,
-  Heading,
 } from "@chakra-ui/react";
 
 import { syncName } from "../redux/nameSlice";

@@ -56,21 +56,15 @@ import { loanSync } from "../redux/admin/loanAdminSlice";
 export const AdminDashboard = () => {
   const dispatch = useDispatch();
   const [edit, setEdit] = useState({});
-  
+
   const data = useSelector((state) => state.listSlice.value);
   const data1 = useSelector((state) => state.nameSlice.value);
   const data2 = useSelector((state) => state.loanAdminSlice.value);
   const { username } = useSelector((state) => state.adminSlice.value);
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const initialRef = useRef(null);
-  const finalRef = useRef(null);
+
   const navigate = useNavigate();
-  const inputTitle = useRef("");
-  const inputAuthor = useRef("");
-  const inputPublisher = useRef("");
-  const inputGenre = useRef("");
-  const inputAbstract = useRef("");
 
   const onLogout = () => {
     dispatch(logoutAdmin());
@@ -129,8 +123,6 @@ export const AdminDashboard = () => {
       console.log(err);
     }
   };
-
-   
 
   return (
     <div>
@@ -222,7 +214,6 @@ export const AdminDashboard = () => {
                             colorScheme="teal"
                             display="flex"
                             onClick={() => setEdit(item)}
-                            
                           >
                             <EditIcon onClick={"#href"} />
                           </Button>

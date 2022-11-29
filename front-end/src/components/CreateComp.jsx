@@ -16,11 +16,13 @@ import {
 import Axios from "axios";
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 export default function CreateComp() {
-  const {id} = useSelector((state) => state.bookSlice.value)
-  const [image, setImage] = useState("");
-  const [profile, setProfile] = useState("Public");
+  const { id } = useSelector((state) => state.bookSlice.value);
+  // const [image, setImage] = useState("");
+  // const [profile, setProfile] = useState("Public");
+  const params = useParams();
   const inputTitle = useRef("");
   const inputAuthor = useRef("");
   const inputPublisher = useRef("");
@@ -38,7 +40,6 @@ export default function CreateComp() {
         Abstract: inputAbstract.current.value,
         Images: inputImages.current.value,
       };
-      console.log(addBook);
 
       const res = await Axios.post(
         `http://localhost:2000/book/create`,
@@ -51,31 +52,32 @@ export default function CreateComp() {
     }
   };
 
-  const handleChoose = (e) => {
-    console.log("e.target.files", e.target.files);
-    setImage(e.target.files[0]);
-  };
+  // const handleChoose = (e) => {
+  //   console.log("e.target.files", e.target.files);
+  //   setImage(e.target.files[0]);
+  // };
 
-  const handleUpload = async (id) => {
-    const data = new FormData();
-    console.log(data);
-    data.append("file", image);
-    console.log(data.get("file"));
-    const resultImage = await Axios.post(
-      `http://localhost:2000/book//uploaded/${id}`,
-      data,
-      {
-        headers: {
-          "Content-type": "multipart/form-data",
-        },
-      }
-    );
-    console.log(resultImage.data);
-    setProfile(resultImage.data.bookPic);
-    setImage({ images: "" });
-  };
-  console.log(image);
-  console.log(profile);
+  // const handleUpload = async () => {
+  //   const data = new FormData();
+  //   console.log(data);
+  //   data.append("file", image);
+  //   console.log(data.get("file"));
+
+  //   const resultImage = await Axios.post(
+  //     `http://localhost:2000/book/uploaded/${id}`,
+  //     data,
+  //     {
+  //       headers: {
+  //         "Content-type": "multipart/form-data",
+  //       },
+  //     }
+  //   );
+  //   console.log(resultImage.data);
+  //   setProfile(resultImage.data.Images);
+  //   setImage({ images: "" });
+  // };
+  // console.log(image);
+  // console.log(profile);
   return (
     <Flex
       minH={"100vh"}
@@ -140,23 +142,30 @@ export default function CreateComp() {
           <Textarea _placeholder={{ color: "gray.500" }} ref={inputAbstract} />
         </FormControl>
         <HStack>
-          <FormControl id="image" isRequired onEncrypted="multipart/form-data">
+          {/* <FormControl id="image" isRequired onEncrypted="multipart/form-data">
             <Box
-              boxSize="100px"
-              backgroundImage={`url(http://localhost:2000/${profile})`}
-            >
-              {/* <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" /> */}
-            </Box>
-            <FormLabel>Images</FormLabel>
-            <Input
-              type={"file"}
-              accept={"image/*"}
-              name={"file"}
-              onChange={(e) => handleChoose(e)}
-              ref={inputImages}
-            ></Input>
-            <Button onClick={handleUpload}>Upload Image</Button>
-          </FormControl>
+              style={{
+                height: "100%",
+                width: "100%",
+                backgroundImage: `url(http://localhost:2000/${profile})`,
+              }}
+            > */}
+          {/* <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" /> */}
+          {/* </Box> */}
+          {/* <FormLabel>Images</FormLabel> */}
+          {/* <Input
+            type="file"
+            accept="image/*"
+            name="file"
+            onChange={(e) => handleChoose(e)}
+            ref={inputImages}
+          ></Input> */}
+          <Button
+          // onClick={handleUpload}
+          >
+            Upload
+          </Button>
+          {/* </FormControl> */}
         </HStack>
 
         <Stack spacing={6} direction={["column", "row"]}>
