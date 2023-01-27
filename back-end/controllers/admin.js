@@ -16,7 +16,6 @@ module.exports = {
 
       const data = await admin.create({
         username,
-
         password: hashPass,
       });
 

@@ -141,12 +141,32 @@ export default function CreateComp() {
           <Textarea _placeholder={{ color: "gray.500" }} ref={inputAbstract} />
         </FormControl>
         <HStack>
+          {/* <FormControl id="image" isRequired onEncrypted="multipart/form-data">
+            <Box
+              style={{
+                height: "100%",
+                width: "100%",
+                backgroundImage: `url(http://localhost:2000/${profile})`,
+              }}
+            > */}
+          {/* <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" /> */}
+          {/* </Box> */}
+          {/* <FormLabel>Images</FormLabel> */}
+          {/* <Input
+            type="file"
+            accept="image/*"
+            name="file"
+            onChange={(e) => handleChoose(e)}
+            ref={inputImages}
+          ></Input> */}
           <Button
           // onClick={handleUpload}
           >
             Upload
           </Button>
+          {/* </FormControl> */}
         </HStack>
+
         <Stack spacing={6} direction={["column", "row"]}>
           <Button
             bg={"blue.400"}
