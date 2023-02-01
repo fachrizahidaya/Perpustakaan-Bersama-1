@@ -31,14 +31,6 @@ import {
   useColorMode,
   useDisclosure,
   Heading,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalOverlay,
-  FormControl,
-  ModalHeader,
-  ModalFooter,
-  ModalCloseButton,
 } from "@chakra-ui/react";
 
 import StatsComp from "../components/StatsComp";
@@ -145,7 +137,7 @@ export const AdminDashboard = () => {
                 >
                   <Avatar
                     size={"sm"}
-                    src={"https://avatars.dicebear.com/api/male/username.svg"}
+                    // src={"https://avatars.dicebear.com/api/male/username.svg"}
                   />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
@@ -153,7 +145,7 @@ export const AdminDashboard = () => {
                   <Center>
                     <Avatar
                       size={"2xl"}
-                      src={"https://avatars.dicebear.com/api/male/username.svg"}
+                      // src={"https://avatars.dicebear.com/api/male/username.svg"}
                     />
                   </Center>
                   <br />
@@ -278,8 +270,7 @@ export const AdminDashboard = () => {
             </Table>
           </TableContainer>
           <CreateComp />
-          <UpdateComp data={edit} />
-
+          {/* <UpdateComp data={edit} /> */}
           <BookCard />
         </Box>
       </Stack>
