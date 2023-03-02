@@ -1,4 +1,4 @@
-# Perpustakaan-Bersama-1
+# Perpustakaan Bersama
 
 Library Apps that allowed users borrow and return books from our catalogue which built by front-end and back-end. This is monorepo contain frontend project using ReactJS and backend project using ExpressJS.
 
