@@ -28,9 +28,6 @@ export default function UpdateComp({ data }) {
   const [image, setImage] = useState("");
   const [profile, setProfile] = useState("Public");
   const navigate = useNavigate();
-
-export default function UpdateComp({ data }) {
-  console.log(data);
   const inputTitle = useRef("");
   const inputAuthor = useRef("");
   const inputPublisher = useRef("");
@@ -102,7 +99,6 @@ export default function UpdateComp({ data }) {
         boxShadow={"lg"}
         p={6}
         my={12}
-        id="#edit"
       >
         <Heading
           lineHeight={1.1}
@@ -112,7 +108,6 @@ export default function UpdateComp({ data }) {
           Edit Book
         </Heading>
         <Flex id="formEdit">
-        <Flex>
           <FormControl id="title" isRequired>
             <FormLabel>Title</FormLabel>
             <Input

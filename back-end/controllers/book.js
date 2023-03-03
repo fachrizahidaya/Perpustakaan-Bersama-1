@@ -8,8 +8,6 @@ module.exports = {
   create: async (req, res) => {
     try {
       const { Title, Author, Genre, Publisher, Abstract } = req.body;
-      // let fileUploaded = req.file;
-      // console.log("controller", fileUploaded);
 
       if (!Title && !Author && !Genre && !Publisher && !Abstract && !Images)
         throw "required field";
@@ -34,6 +32,7 @@ module.exports = {
       res.status(400).send(err);
     }
   },
+
   getAll: async (req, res) => {
     try {
       const users = await book.findAll({

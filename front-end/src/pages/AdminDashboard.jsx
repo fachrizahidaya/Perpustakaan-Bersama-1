@@ -31,20 +31,11 @@ import {
   useColorMode,
   useDisclosure,
   Heading,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalOverlay,
-  FormControl,
-  ModalHeader,
-  ModalFooter,
-  ModalCloseButton,
 } from "@chakra-ui/react";
 
 import StatsComp from "../components/StatsComp";
 import { syncName } from "../redux/nameSlice";
 import { logoutAdmin } from "../redux/admin/adminSlice";
-import { logoutAdmin } from "../redux/adminSlice";
 import { EditIcon, MoonIcon, SunIcon, AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import BookCard from "../components/AllBookComp";
@@ -53,7 +44,6 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import UpdateComp from "../components/UpdateComp";
 import { useState } from "react";
 import { loanSync } from "../redux/admin/loanAdminSlice";
-import { loanSync } from "../redux/loanSlice";
 
 export const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -146,7 +136,7 @@ export const AdminDashboard = () => {
                 >
                   <Avatar
                     size={"sm"}
-                    src={"https://avatars.dicebear.com/api/male/username.svg"}
+                    // src={"https://avatars.dicebear.com/api/male/username.svg"}
                   />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
@@ -154,7 +144,7 @@ export const AdminDashboard = () => {
                   <Center>
                     <Avatar
                       size={"2xl"}
-                      src={"https://avatars.dicebear.com/api/male/username.svg"}
+                      // src={"https://avatars.dicebear.com/api/male/username.svg"}
                     />
                   </Center>
                   <br />
@@ -279,8 +269,7 @@ export const AdminDashboard = () => {
             </Table>
           </TableContainer>
           <CreateComp />
-          <UpdateComp data={edit} />
-
+          {/* <UpdateComp data={edit} /> */}
           <BookCard />
         </Box>
       </Stack>
