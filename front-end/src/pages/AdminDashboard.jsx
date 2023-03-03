@@ -7,19 +7,15 @@ import {
   Image,
   Button,
   Box,
-  Text,
-  Icon,
   Flex,
   Center,
   TableContainer,
   Table,
-  TableCaption,
   Thead,
   Tr,
   Th,
   Tbody,
   Td,
-  Tfoot,
   Stack,
   Menu,
   MenuButton,
@@ -41,7 +37,6 @@ import { useNavigate } from "react-router-dom";
 import BookCard from "../components/AllBookComp";
 import CreateComp from "../components/CreateComp";
 import { DeleteIcon } from "@chakra-ui/icons";
-import UpdateComp from "../components/UpdateComp";
 import { useState } from "react";
 import { loanSync } from "../redux/admin/loanAdminSlice";
 
@@ -65,7 +60,7 @@ export const AdminDashboard = () => {
   const getData = async () => {
     try {
       const res = await Axios.get(`http://localhost:2000/book/list`);
-      console.log(res.data);
+
       dispatch(syncData(res.data));
     } catch (err) {
       console.log(err);
@@ -79,7 +74,7 @@ export const AdminDashboard = () => {
   const getUser = async () => {
     try {
       const res = await Axios.get(`http://localhost:2000/user/allUser`);
-      console.log(res.data);
+
       dispatch(syncName(res.data));
     } catch (err) {
       console.log(err);
@@ -93,7 +88,7 @@ export const AdminDashboard = () => {
   const getLoan = async () => {
     try {
       const res = await Axios.get(`http://localhost:2000/loan/list`);
-      console.log(res.data);
+
       dispatch(loanSync(res.data));
     } catch (err) {
       console.log(err);
@@ -107,7 +102,7 @@ export const AdminDashboard = () => {
   const onDelete = async (id) => {
     try {
       const res = await Axios.delete(`http://localhost:2000/book/remove/${id}`);
-      console.log(res);
+
       getData();
     } catch (err) {
       console.log(err);

@@ -3,9 +3,7 @@ import {
   Button,
   Icon,
   Text,
-  useToast,
   Image,
-  Stack,
   Flex,
   FormControl,
   Select,
@@ -13,14 +11,11 @@ import {
   Input,
   InputRightElement,
   FormHelperText,
-  Tooltip,
   useColorModeValue,
   Center,
   FormLabel,
 } from "@chakra-ui/react";
-
 import { IoCartOutline } from "react-icons/io5";
-// import NextLink from 'next/link';
 import Axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,8 +39,6 @@ export default function BookCard() {
   const [totalPage, setTotalPage] = useState(0);
   const [order, setOrder] = useState("Title");
   const [order_direction, setOrder_direction] = useState("ASC");
-  const [idbook, setIdbook] = useState("");
-
   const dispatch = useDispatch();
   const data = useSelector((state) => state.bookSlice.value);
   const [state, setState] = useState("");
@@ -190,11 +183,11 @@ export default function BookCard() {
                   boxSize="6"
                   as={BiReset}
                   onClick={() => {
-                      function submit() {
+                    function submit() {
                       setSearchProduct("");
                       setOrder("id");
-                      setOrder_direction("ASC")
-                      setLimit(5)
+                      setOrder_direction("ASC");
+                      setLimit(5);
                       document.getElementById("search").value = "";
                       document.getElementById("category").value = "";
                       document.getElementById("sort").value = "ASC";

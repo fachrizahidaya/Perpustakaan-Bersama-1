@@ -1,4 +1,3 @@
-import { EditIcon } from "@chakra-ui/icons";
 import {
   Button,
   Flex,
@@ -9,17 +8,10 @@ import {
   Stack,
   useColorModeValue,
   Textarea,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalBody,
-  ModalFooter,
   Box,
 } from "@chakra-ui/react";
 import Axios from "axios";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -27,7 +19,6 @@ export default function UpdateComp({ data }) {
   const { id } = useSelector((state) => state.bookSlice.value);
   const [image, setImage] = useState("");
   const [profile, setProfile] = useState("Public");
-  const navigate = useNavigate();
   const inputTitle = useRef("");
   const inputAuthor = useRef("");
   const inputPublisher = useRef("");
@@ -158,7 +149,7 @@ export default function UpdateComp({ data }) {
             style={{
               height: "100%",
               width: "100%",
-              backgroundImage: `url(http://localhost:2000/${profile})`
+              backgroundImage: `url(http://localhost:2000/${profile})`,
             }}
           >
             {/* <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" /> */}

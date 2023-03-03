@@ -50,7 +50,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { logout, login, delCart } from "../redux/userSlice";
 import { cartSync, cartDel } from "../redux/cartSlice";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Swal from "sweetalert2";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";

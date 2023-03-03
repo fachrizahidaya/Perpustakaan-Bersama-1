@@ -1,32 +1,6 @@
-import {
-  Box,
-  Text,
-  Center,
-  Image,
-  useColorModeValue,
-  IconButton,
-  Slider,
-  useBreakpointValue,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
-
-const settings = {
-  dots: true,
-  arrows: false,
-  fade: true,
-  infinite: true,
-  autoplay: true,
-  speed: 500,
-  autoplaySpeed: 5000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-};
+import { Box, Text, Image } from "@chakra-ui/react";
 
 export default function HomeMiniBanner() {
-  const [slider, setSlider] = useState(null);
-  const top = useBreakpointValue({ base: "90%", md: "50%" });
-  const side = useBreakpointValue({ base: "30%", md: "10px" });
   return (
     <>
       <Box

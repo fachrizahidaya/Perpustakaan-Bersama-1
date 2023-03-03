@@ -1,6 +1,5 @@
 import {
   Box,
-  chakra,
   Container,
   Stack,
   Text,
@@ -28,9 +27,8 @@ export default function DetailPage() {
   const getBook = async () => {
     try {
       const result = await Axios.get(
-        `http://localhost:2000/book/list/${params.id}`  
+        `http://localhost:2000/book/list/${params.id}`
       );
-      console.log(result.data);
       setData(result.data);
     } catch (err) {
       console.log(err);
@@ -63,7 +61,8 @@ export default function DetailPage() {
           <Box as={"header"}>
             <Heading
               lineHeight={1.1}
-              fontWeight={600}e
+              fontWeight={600}
+              e
               fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
             >
               {data?.Title}
@@ -97,7 +96,8 @@ export default function DetailPage() {
               </Text>
               <Text fontSize={"lg"}>{data?.Abstract}</Text>
             </VStack>
-            <Box>``
+            <Box>
+              ``
               <Text
                 fontSize={{ base: "16px", lg: "18px" }}
                 color={useColorModeValue("yellow.500", "yellow.300")}
@@ -107,7 +107,6 @@ export default function DetailPage() {
               >
                 Author
               </Text>
-
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                 <List spacing={2}>
                   <ListItem>{data?.Author}</ListItem>

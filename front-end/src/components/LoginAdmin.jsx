@@ -8,17 +8,8 @@ import {
   Link,
   Button,
   Heading,
-  Text,
   useColorModeValue,
-  useDisclosure,
   useColorMode,
-  Collapse,
-  Avatar,
-  MenuList,
-  MenuItem,
-  Menu,
-  MenuButton,
-  Icon,
   Badge,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
@@ -31,10 +22,6 @@ import { useNavigate } from "react-router-dom";
 const url = "http://localhost:2000/admin/login";
 
 export default function LoginAdmin() {
-  const { username } = useSelector((state) => state.userSlice.value);
-
-  const { colorMode, toggleColorMode } = useColorMode();
-  const tokenlocalstorage = localStorage.getItem("tokenAdmin");
   const dispatch = useDispatch();
   const inputUsername = useRef("");
   const inputPASS = useRef("");
@@ -47,11 +34,7 @@ export default function LoginAdmin() {
         password: inputPASS.current.value,
         username: inputUsername.current.value,
       };
-
-      console.log(user);
-
       const result = await Axios.post(url, user);
-
       dispatch(
         loginAdmin({
           username: result.data.isUserExist.username,

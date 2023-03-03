@@ -8,22 +8,10 @@ import {
   StatNumber,
   useColorModeValue,
   useDisclosure,
-  Modal,
-  Button,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
 } from "@chakra-ui/react";
 import { BsPerson } from "react-icons/bs";
 import { FiServer } from "react-icons/fi";
-import { GoLocation } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { UsersTable } from "./UsersTable";
-import { BooksTable } from "./BooksTable";
 import { CheckIcon } from "@chakra-ui/icons";
 
 function StatsCard(props) {
@@ -83,53 +71,13 @@ export default function StatsComp() {
           stat={data.length}
           icon={<BsPerson size={"3em"} />}
         />
-        {/* </Button> */}
-        {/* <Modal
-          isCentered
-          onClose={onClose}
-          isOpen={isOpen}
-          motionPreset="slideInBottom"
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Users List</ModalHeader>
-            <UsersTable />
-            <ModalCloseButton />
-            <ModalBody></ModalBody>
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal> */}
 
-        {/* <Button onClick={onOpen} variant="ghost"> */}
         <StatsCard
           title={"Books"}
           stat={data1.length}
           icon={<FiServer size={"3em"} />}
         ></StatsCard>
-        {/* </Button> */}
-        {/* <Modal
-          isCentered
-          onClose={onClose}
-          isOpen={isOpen}
-          motionPreset="slideInBottom"
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Books List</ModalHeader>
-            <BooksTable />
-            <ModalCloseButton />
-            <ModalBody></ModalBody>
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal> */}
+
         <StatsCard
           title={"Transactions"}
           stat={data2.length}

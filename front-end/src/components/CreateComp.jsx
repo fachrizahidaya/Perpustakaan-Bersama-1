@@ -8,8 +8,6 @@ import {
   Stack,
   useColorModeValue,
   Textarea,
-  Box,
-  Image,
   HStack,
 } from "@chakra-ui/react";
 import Axios from "axios";
@@ -18,10 +16,6 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export default function CreateComp() {
-  const { id } = useSelector((state) => state.bookSlice.value);
-  // const [image, setImage] = useState("");
-  // const [profile, setProfile] = useState("Public");
-  const params = useParams();
   const inputTitle = useRef("");
   const inputAuthor = useRef("");
   const inputPublisher = useRef("");
@@ -44,39 +38,11 @@ export default function CreateComp() {
         `http://localhost:2000/book/create`,
         addBook
       );
-
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
   };
 
-  // const handleChoose = (e) => {
-  //   console.log("e.target.files", e.target.files);
-  //   setImage(e.target.files[0]);
-  // };
-
-  // const handleUpload = async () => {
-  //   const data = new FormData();
-  //   console.log(data);
-  //   data.append("file", image);
-  //   console.log(data.get("file"));
-
-  //   const resultImage = await Axios.post(
-  //     `http://localhost:2000/book/uploaded/${id}`,
-  //     data,
-  //     {
-  //       headers: {
-  //         "Content-type": "multipart/form-data",
-  //       },
-  //     }
-  //   );
-  //   console.log(resultImage.data);
-  //   setProfile(resultImage.data.Images);
-  //   setImage({ images: "" });
-  // };
-  // console.log(image);
-  // console.log(profile);
   return (
     <Flex
       minH={"100vh"}
